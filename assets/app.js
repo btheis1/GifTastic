@@ -15,14 +15,30 @@ for (i = 0; i < topics.length; i++) {
     $("#animals").append(button);
 }
 
+//Event listener for click on submit button
+$("#submitBtn").on("click", function(event) {
+    event.preventDefault();
+    //store user input in variable called string
+    var string = $("input").val().trim();
+    //create new button
+    var newBtn = $("<button>");   
+    //set text = string
+    newBtn.text(string);
+    //give button attribute = string
+    newBtn.attr("data-animal", string);
+    //append to animals div
+    $("#animals").append(newBtn);
+})
+
 //ON CLICK
-$("button").on("click", function() {
+$(document).on("click", "button", function() {
  // GET data attribute from click
  var animal = $(this).attr("data-animal");
  //API url, store as variable
  //edit query url to call gif related to string, limit 10 gifs
  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal +
  "&api_key=MUZEBvJnYr2rv9aIpEMkS5AMc9UYchXq&limit=10" ;
+
  //ajax call
  $.ajax({
     url: queryURL,
@@ -79,13 +95,5 @@ $("button").on("click", function() {
     })
 })
 
-//Event listener for click on submit button
-$("#submitBtn").on("click", function(event) {
-    event.preventDefault();
-    //store user input in variable called string
-    var string = $("#userInput").val().trim();
-    console.log(string);
-    //push new string to topics array
-    topics.push(string);
-    console.log(topics);
-})
+
+
