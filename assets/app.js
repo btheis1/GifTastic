@@ -1,7 +1,7 @@
 //DEFINE global variables
     //CREATE ARRAY of strings
 var topics = ["cat","dog","hamster","fish","bird","sheep","monkey"]
-    
+
 for (i = 0; i < topics.length; i++) {
     //CREATE new button
     var button = $("<button>");
@@ -63,6 +63,7 @@ $("button").on("click", function() {
         
         //On click, animate gifs
         $("img").on("click", function() {
+
             //create variable referring to the state of image clicked
             var state = $(this).attr("data-state");
             //if image is still, change img src to animated
@@ -78,6 +79,13 @@ $("button").on("click", function() {
     })
 })
 
-//FORM
-    //when user clicks submit, save string to the array
-    
+//Event listener for click on submit button
+$("#submitBtn").on("click", function(event) {
+    event.preventDefault();
+    //store user input in variable called string
+    var string = $("#userInput").val().trim();
+    console.log(string);
+    //push new string to topics array
+    topics.push(string);
+    console.log(topics);
+})
